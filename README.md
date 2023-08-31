@@ -1,3 +1,3 @@
 # Automated-Continuous-Delivery-to-K8s-cluster
 
-Implementing automated Continuous Delivery to Kubernetes Cluster using Jenkins.
+Implementing automation of deploying a Continuous Delivery process on a Kubernetes Cluster through the utilization of SonarQube, Helm charts and Jenkins.

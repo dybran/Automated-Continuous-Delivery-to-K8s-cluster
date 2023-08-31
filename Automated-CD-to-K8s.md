@@ -18,8 +18,8 @@ __TOOLS__
 
 The project will utilize the following tools:
 
-- Kubernetes - For orchestrating container deployment
-- Docker  runtime environment - For building and testing docker images.
+- __Kubernetes__ - For orchestrating container deployment
+- __Docker  runtime environment__ - For building and testing docker images.
 - __Jenkins__ - CI/CD tool for the process.
 - __Dockerhub__ - To serve as a repository for the images.
 - __Helm__ - For packaging and deploying the images to kubernetes cluster.
@@ -39,6 +39,7 @@ In the event that the code meets the established quality criteria, Jenkins advan
 Once the Docker image is successfully uploaded to Docker Hub, Jenkins transitions to employing Helm. It incorporates a Kubernetes Operations (kops) Virtual Machine to function as a slave. Through this slave, Jenkins employs kops to orchestrate the deployment of Helm charts onto the Kubernetes cluster. The Helm chart serves as a blueprint for the creation of Kubernetes objects. When these services are already in existence, the Helm chart adeptly implements modifications, such as the application pod receiving an updated image tag.
 
 __FLOW OF EXECUTION__
+
 - Continuous Integration setup
    - Jenkins and Sonarqube
 - Dockerhub account

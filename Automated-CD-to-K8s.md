@@ -1,6 +1,6 @@
 ## __IMPLEMENTING AUTOMATED CONTINUOUS DELIVERY TO KUBERNETES CLUSTER__
 
-In this project, my goal is to establish a system designed to consistently build Docker images and seamlessly deploy them to a Kubernetes cluster.
+In this project, my goal is to establish a system designed to consistently build Docker images and seamlessly deploy the images to a Kubernetes cluster.
 
 __SCENARIO__
 

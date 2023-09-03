@@ -282,7 +282,7 @@ Apply and save. Then open __Dashboard > manage jenkins > system configuration__ 
 ![](./images/sc4.PNG)
 ![](./images/sc5.PNG)
 
-___Add dockerhub credentials to Jenkins___
+__Add dockerhub credentials to Jenkins__
 
 Add the dockerhub credentials(username and password) to Jenkins. Go to __Dashboard > manage jenkins > credentials__ 
 

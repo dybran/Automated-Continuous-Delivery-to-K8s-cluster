@@ -120,6 +120,7 @@ aws --version
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
 ```
+The script above installs __Jenkins__ and __Docker__, and subsequently adds both the __ubunutu user__ and __Jenkins__ to the __Docker__ group.
 
 __for sonarqube server:__
 ```
@@ -280,5 +281,72 @@ Apply and save. Then open __Dashboard > manage jenkins > system configuration__ 
 ![](./images/sc3.PNG)
 ![](./images/sc4.PNG)
 ![](./images/sc5.PNG)
+
+___Add dockerhub credentials to Jenkins___
+
+Add the dockerhub credentials(username and password) to Jenkins. Go to __Dashboard > manage jenkins > credentials__ 
+
+![](./images/wqq.PNG)
+![](./images/wqqq.PNG)
+![](./images/wqqqq.PNG)
+
+__Install Plugins__
+
+Go to __manage jenkins > plugins__ Install the plugins
+- Docker plugin
+- Docker pipeline plugin
+- Pipeline utility steps plugin
+- Build Timestamp plugin
+
+![](./images/d1.PNG)
+![](./images/d2.PNG)
+![](./images/d3.PNG)
+![](./images/d4.PNG)
+
+__Create kubernetes cluster with kops and install Helm__
+
+Create an instance and setup the kubernetes cluster using kops. Click [here](https://github.com/dybran/Kubernetes-Cluster-Setup-with-Kops/blob/main/Kubernetes-setup-with-kops.md) for the setup.
+
+![](./images/k11.PNG)
+
+Create configurations for the cluster and store them in s3 bucket.
+
+`$ kops create cluster --name=mydevopsproject.top --state=s3://project-kops-state --zones=us-east-1a,us-east-1b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=mydevopsproject.top`
+
+![](./images/1q.PNG)
+
+Configure and create cluster
+
+`$ kops update cluster --state=s3://project-kops-state --name mydevopsproject.top --yes --admin`
+
+![](./images/kops2.PNG)
+
+Wait for 15mins and validate cluster
+
+`$ kops validate cluster --state=s3://project-kops-state`
+
+
+Install __Helm__ in the kops instance. Refer to the documentation on the __installation guide__ [here](https://helm.sh/docs/intro/install/). We will add the kops instance as a slave to Jenkins and run Helm commands from kops instance.
+
+![](./images/helm.PNG)
+
+Copy the link and download the binary.
+
+![](./images/111222.PNG)
+
+
+`$ cd /tmp/`
+
+`$ wget https://get.helm.sh/helm-v3.12.3-linux-amd64.tar.gz`
+
+To make helm globally accessible in kops instance
+
+`$ sudo mv linux-amd64/helm /usr/local/bin/helm`
+
+`$ cd ~`
+
+`$ helm version`
+
+![](./images/wwqq.PNG)
 
 

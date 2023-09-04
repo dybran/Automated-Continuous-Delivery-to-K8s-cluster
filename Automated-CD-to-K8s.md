@@ -311,7 +311,7 @@ Create an instance and setup the kubernetes cluster using kops. Click [here](htt
 
 Create configurations for the cluster and store them in s3 bucket.
 
-`$ kops create cluster --name=mydevopsproject.top --state=s3://project-kops-state --zones=us-east-1a,us-east-1b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=mydevopsproject.top`
+`$ kops create cluster --name=mydevopsproject.top --state=s3://project-kops-state --zones=us-east-1a,us-east-1b --node-count=2 --node-size=t3.small --master-size=t3.medium --dns-zone=mydevopsproject.top --node-volume-size=8 --master-volume-size=8`
 
 ![](./images/1q.PNG)
 
@@ -323,7 +323,9 @@ Configure and create cluster
 
 Wait for 15mins and validate cluster
 
-`$ kops validate cluster --state=s3://project-kops-state`
+`$ kops validate cluster --name=mydevopsproject.top --state=s3://project-kops-state`
+
+![](./images/val.PNG)
 
 
 Install __Helm__ in the kops instance. Refer to the documentation on the __installation guide__ [here](https://helm.sh/docs/intro/install/). We will add the kops instance as a slave to Jenkins and run Helm commands from kops instance.
@@ -348,5 +350,28 @@ To make helm globally accessible in kops instance
 `$ helm version`
 
 ![](./images/wwqq.PNG)
+
+To create the helm chart
+
+`$ mkdir helm && cd helm`
+
+`$ helm create vprofilecharts`
+
+Write the definition files and put them in the __helm/vprofilechrts/templates__
+
+![](./images/hcs.PNG)
+
+In the __app-deployment.yml__ file, we use a variable to dynamically substitute the image value. When we execute the Helm command, it will automatically inject the latest version and tag for the __appimage__.
+
+![](./images/app.PNG)
+
+__Test the helm chart__
+
+Create a namespace __test__
+
+`$ kubectl create namespace test`
+
+`$ helm install --namespace test vpro-stack  helm/vprofilecharts --set appmage`
+
 
 

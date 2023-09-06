@@ -414,4 +414,49 @@ Create the __Prod__ namespace for the __Jenkinsfile__
 
 ![](./images/pro.PNG)
 
-__Write the Jenkinsfile__
+
+__Add kops as Jenkins slave__
+
+Add the __kops__ instance as a slave in Jenkins.
+
+In the kops instance, create directory __jenkins-slave__ and install __java__
+
+`$ sudo apt update && sudo apt install openjdk-17-jre -y`
+
+![](./images/openj.PNG)
+![](./images/jvv.PNG)
+
+`$ sudo mkdir /opt/jenkins-slave`
+
+Assign ownership to the Ubuntu user, who will utilize it for accessing the Jenkins slave. The directory where Jenkins will store its master and workspace files is located at __"/opt/jenkins-slave"__. Jenkins will establish a connection to the Kops instance while logging in as the Ubuntu user.
+
+`$ sudo chown -R ubuntu ubuntu /opt/jenkins-slave`
+
+![](./images/rtt.PNG)
+
+Update the kops security group to allow ssh from jenkins
+
+![](./images/jssh.PNG)
+
+On the Jenkins server configure the jenkins to slave kops.
+
+Go to __Dashboard > Manage Jenkins > Nodes > New node__
+
+![](./images/n1.PNG)
+![](./images/n2.PNG)
+![](./images/n3.PNG)
+![](./images/n4.PNG)
+
+Copy and paste the kops private.
+
+![](./images/n5.PNG)
+![](./images/n6.PNG)
+![](./images/n7.PNG)
+
+
+
+Write the [__jenkinsfile__](https://github.com/dybran/Automated-Continuous-Delivery-to-K8s-cluster/blob/main/cicd-kube-docker/Jenkinsfile). Click [here](https://github.com/dybran/Automated-Continuous-Delivery-to-K8s-cluster/blob/main/cicd-kube-docker/Jenkinsfile).
+
+![](./images/azz.PNG)
+
+This stage of the Jenkinsfile will run helm commands from the kops slave.

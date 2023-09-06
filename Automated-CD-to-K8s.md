@@ -460,3 +460,11 @@ Write the [__jenkinsfile__](https://github.com/dybran/Automated-Continuous-Deliv
 ![](./images/azz.PNG)
 
 This stage of the Jenkinsfile will run helm commands from the kops slave.
+
+__Create a Jenkins job__
+
+![](./images/j1.PNG)
+![](./images/j2.PNG)
+![](./images/j3.PNG)
+
+Then go to

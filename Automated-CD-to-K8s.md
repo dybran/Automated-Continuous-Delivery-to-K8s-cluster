@@ -467,4 +467,4 @@ __Create a Jenkins job__
 ![](./images/j2.PNG)
 ![](./images/j3.PNG)
 
-Then go to
+Connect the Jenkins to github through webhook so that the build triggers when changes are made to the code.

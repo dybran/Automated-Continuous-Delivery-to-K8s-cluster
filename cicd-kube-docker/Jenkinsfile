@@ -7,8 +7,8 @@ pipeline {
     }
 */
     environment {
-        registry = "kubeimran/vproappdock"
-        registryCredential = 'dockerhub'
+        registry = "dybran/vproappimg"
+        registryCredential = "dockerhub"
     }
 
     stages{
@@ -100,7 +100,7 @@ pipeline {
         stage('Kubernetes Deploy') {
           agent {label 'KOPS'}
             steps {
-              sh "helm upgrade --install --force vprofile-stack helm/vprofilecharts --set appimage=${registry}:V${BUILD_NUMBER} --namespace prod"
+              sh "helm upgrade --install --force vprofile-stack helm/vprocharts --set appimage=${registry}:V${BUILD_NUMBER} --namespace prod"
             }
         }
     }

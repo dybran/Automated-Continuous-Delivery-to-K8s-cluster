@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: dbvprofile
-          image: dybran/vprofiledb:latest
+          image: imranvisualpath/8pmdbimg:v1
           volumeMounts:
            - name: db-vprofile-data
              mountPath: /var/lib/mysql

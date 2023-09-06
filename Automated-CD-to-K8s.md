@@ -351,15 +351,24 @@ To make helm globally accessible in kops instance
 
 ![](./images/wwqq.PNG)
 
-To create the helm chart
+Create the helm chart and move the definition files in __kubernetes__ to __helm/vprocharts/templates__
 
 `$ mkdir helm && cd helm`
 
-`$ helm create vprofilecharts`
+`$ helm create vprocharts`
 
-Write the definition files and put them in the __helm/vprofilechrts/templates__
+`$ cd vprocharts`
 
-![](./images/hcs.PNG)
+Remove the content of __templates__
+
+`$ rm -rf helm/vprocharts/templates/*`
+
+Copy the definition file in the __kubernetes__ directory.
+
+`$ cp -r ../../kubernetes/* ./templates`
+
+![](./images/vcharts.PNG)
+
 
 In the __app-deployment.yml__ file, we use a variable to dynamically substitute the image value. When we execute the Helm command, it will automatically inject the latest version and tag for the __appimage__.
 
@@ -371,7 +380,38 @@ Create a namespace __test__
 
 `$ kubectl create namespace test`
 
-`$ helm install --namespace test vpro-stack  helm/vprofilecharts --set appmage`
+`$ helm install --namespace test vpro-stack  helm/vprocharts --set appimage=dybran/vprofileapp:latest`
 
+![](./images/tests.PNG)
 
+Execute the following command to view the services, pods, and deployments within the __"test"__ namespace:
 
+`$ kubectl get all --namespace test`
+
+To obtain the Load Balancer endpoint, use the following command:
+
+`$ kubectl get svc app-service --namespace test`
+
+![](./images/svc.PNG)
+
+Access from the browser
+
+![](./images/qqq.PNG)
+
+To delete the __vpro-stack__ that was created
+
+`$ helm delete vpro-stack --namespace test`
+
+To delete the __test__ namespace
+
+`$ kubectl delete namespace test`
+
+![](./images/del.PNG)
+
+Create the __Prod__ namespace for the __Jenkinsfile__
+
+`$ kubectl create namespace prod`
+
+![](./images/pro.PNG)
+
+__Write the Jenkinsfile__

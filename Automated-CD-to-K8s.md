@@ -254,6 +254,9 @@ __Jenkins security group__
 __Sonarqube security group__
 ![](./images/ssg.PNG)
 
+
+__Sonarqube Setup__
+
 Log into the sonarqube server and generate a token and save it in the jenkins server.
 
 ```
@@ -262,7 +265,25 @@ username: admin
 password: admin
 ```
 ![](./images/s1.PNG)
+
+Generate token
+
 ![](./images/s2.PNG)
+
+Set Quality gate for the code.
+
+A Quality Gate in SonarQube is a set of predefined criteria or rules that are used to assess the quality of your code and determine whether it meets the required quality standards. Quality Gates are an essential part of continuous integration and continuous delivery (CI/CD) pipelines, as they help ensure that only high-quality code is promoted to the next stage of the development process or deployed to production.
+
+![](./images/q1.PNG)
+![](./images/q2.PNG)
+![](./images/q3.PNG)
+
+In the above screenshot, we set the quality gate to __60__
+![](./images/q4.PNG)
+
+We will build the  artifact using the  Jenkinsfile pipeline. When the artifact is pushed to sonarqube we can then link the Quality gate to the project.
+
+__Jenkins Setup__
 
 Go to Jenkins, install sonarqube scanner plugin
 ![](./images/s3.PNG)

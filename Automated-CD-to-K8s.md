@@ -51,6 +51,7 @@ __FLOW OF EXECUTION__
    - Docker pipeline plugin
    - Pipeline utility plugin
    - Build Timestamp plugin
+   - Pipeline maven integration
 - Create kubernetes cluster with kops
 - Install helm in the kops instance/VM.
 - Create helm charts
@@ -257,7 +258,7 @@ __Sonarqube security group__
 
 __Sonarqube Setup__
 
-Log into the sonarqube server and generate a token and save it in the jenkins server.
+Log into the sonarqube server and generate a token. Save it in the jenkins server.
 
 ```
 username: admin
@@ -281,7 +282,7 @@ A Quality Gate in SonarQube is a set of predefined criteria or rules that are us
 In the above screenshot, we set the quality gate to __60__
 ![](./images/q4.PNG)
 
-We will build the  artifact using the  Jenkinsfile pipeline. When the artifact is pushed to sonarqube we can then link the Quality gate to the project.
+We will build the  artifact using the  Jenkinsfile pipeline. When the artifact is pushed to sonarqube we can then link the __Quality gate__ to the project and create a __jenkins webhook__.
 
 __Jenkins Setup__
 

@@ -5,7 +5,7 @@
 
 # Install jenkins and java
 sudo apt-get update
-sudo apt install openjdk-17-jre -y
+sudo apt install openjdk-11-jdk -y
 
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null

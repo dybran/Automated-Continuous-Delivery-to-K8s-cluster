@@ -49,9 +49,10 @@ __FLOW OF EXECUTION__
    - sonaqube scanner plugin
    - Docker plugin
    - Docker pipeline plugin
-   - Pipeline utility plugin
+   - Pipeline utility steps plugin
    - Build Timestamp plugin
    - Pipeline maven integration
+   - Maven integration
 - Create kubernetes cluster with kops
 - Install helm in the kops instance/VM.
 - Create helm charts
@@ -77,7 +78,7 @@ __For jenkins server__
 
 # Install jenkins and java
 sudo apt-get update
-sudo apt install openjdk-17-jre -y
+sudo apt install openjdk-11-jdk -y
 
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
@@ -315,10 +316,11 @@ Add the dockerhub credentials(username and password) to Jenkins. Go to __Dashboa
 __Install Plugins__
 
 Go to __manage jenkins > plugins__ Install the plugins
-- Docker plugin
-- Docker pipeline plugin
-- Pipeline utility steps plugin
-- Build Timestamp plugin
+ - Docker plugin
+ - Docker pipeline plugin
+ - Pipeline utility plugin
+ - Build Timestamp plugin
+ - Pipeline maven integration
 
 ![](./images/d1.PNG)
 ![](./images/d2.PNG)
@@ -485,8 +487,12 @@ This stage of the Jenkinsfile will run helm commands from the kops slave.
 
 __Create a Jenkins job__
 
+Creat a Jenkins job and configure it tthe path of the Jenkinfile.
+
 ![](./images/j1.PNG)
 ![](./images/j2.PNG)
 ![](./images/j3.PNG)
 
-Connect the Jenkins to github through webhook so that the build triggers when changes are made to the code.
+Connect the Jenkins to github through webhook such that the build triggers when changes are made to the code.
+
+![](./images/wh.PNG)

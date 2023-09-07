@@ -103,6 +103,9 @@ echo \
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
+# install maven
+sudo yum install maven -y
+
 
 # Add ubuntu & Jenkins to the Docker group
 sudo usermod -aG docker ubuntu

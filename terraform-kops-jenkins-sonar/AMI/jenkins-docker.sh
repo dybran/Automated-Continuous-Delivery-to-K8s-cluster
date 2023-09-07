@@ -38,6 +38,9 @@ sudo usermod -aG docker jenkins
 # run docker test container 
 sudo docker run hello-world
 
+# Install Maven
+sudo apt install maven -y
+
 # install aws cli
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" 
 sudo apt install unzip

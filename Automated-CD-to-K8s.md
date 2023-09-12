@@ -583,3 +583,7 @@ Access through the browser
 
 
 Everytime the developers makes changes to the code and pushes to the github repository, the Jenkins build is triggered using the webhook and the latest version of the code is built.
+
+__N/B__
+
+My database image was faulty and i had to fix the problem.

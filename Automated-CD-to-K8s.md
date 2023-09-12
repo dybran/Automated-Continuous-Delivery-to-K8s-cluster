@@ -474,7 +474,7 @@ Go to __Dashboard > Manage Jenkins > Nodes > New node__
 ![](./images/n3.PNG)
 ![](./images/n4.PNG)
 
-Copy and paste the kops private.
+Copy and paste the kops private key.
 
 ![](./images/n5.PNG)
 ![](./images/n6.PNG)

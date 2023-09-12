@@ -7,8 +7,8 @@ pipeline {
     }
 */
     environment {
-        registry = "dybran/vproappimg"
-        registryCredential = "dockerhub"
+      registry = "dybran/vproappimg"
+      registryCredential = "dockerhub"
     }
 
     stages{

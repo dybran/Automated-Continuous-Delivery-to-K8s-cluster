@@ -490,12 +490,86 @@ This stage of the Jenkinsfile will run helm commands from the kops slave.
 
 __Create a Jenkins job__
 
-Creat a Jenkins job and configure it tthe path of the Jenkinfile.
+Creat a Jenkins job and configure it to the path of the Jenkinfile.
 
 ![](./images/j1.PNG)
 ![](./images/j2.PNG)
 ![](./images/j3.PNG)
 
+Install openjdk 8
+
+`$ sudo apt update && sudo apt install openjdk-8-jdk -y`
+
+![](./images/jdk-8.PNG)
+
+In the __dashboard > manage jenkins > tools__, configure and install the path to __JDK__ and __MAVEN__
+
+![](./images/jdk1.PNG)
+![](./images/jdk2.PNG)
+![](./images/maven.PNG)
+
 Connect the Jenkins to github through webhook such that the build triggers when changes are made to the code.
 
 ![](./images/wh.PNG)
+
+Push the code to github
+
+`$ git add .`
+
+`$ git commit -m "<commit-message>"`
+
+`$ git push`
+
+The pipeline builds but pauses.
+
+![](./images/code-wait.PNG)
+
+From the logs below, we will find that the push to sonarqube was successful but jenkins is waiting for the sonarqube to respond back with the quality gate status.
+
+![](./images/saa.PNG)
+
+To allow this to happen, we need to set up the sonarqube webhook with jenkins __private-IP__ address.
+
+On the sonarqube, click on the project and setup the webhook.
+
+![](./images/p1.PNG)
+![](./images/p2.PNG)
+![](./images/p3.PNG)
+![](./images/p4.PNG)
+
+Associate the __Quality gate__ we created earlier to the project.
+
+![](./images/ass.PNG)
+
+Build the jenkins job again
+
+![](./images/deploy1.PNG)
+
+The Jenkins build process was successfully deployed to kubernetes.
+
+To verify
+
+`$ helm list --namespace prod`
+
+
+`$ kubectl get pods --namespace prod`
+
+To get the Load balancer endpoint
+
+`$ kubectl get svc --namespace prod`
+
+![](./images/lbend.PNG)
+
+To check the Image name 
+
+`$ kubectl describe pods <app-image-pod> --namespace prod`
+
+![](./images/pp1.PNG)
+![](./images/pp2.PNG)
+
+Access through the browser
+
+![](./images/url.PNG)
+
+
+Everytime the developers makes changes to the code and pushes to the github repository, the Jenkins build is triggered using the webhook and the latest version of the code is built.

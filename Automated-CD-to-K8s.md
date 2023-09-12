@@ -541,7 +541,17 @@ Associate the __Quality gate__ we created earlier to the project.
 
 ![](./images/ass.PNG)
 
-Build the jenkins job again
+When we build the job again, if the code does not pass the Quality gate of __60__ that was set the pipeline breaks
+
+![](./images/qww.PNG)
+
+This can also be seen in the logs
+
+![](./images/qww1.PNG)
+
+A notification is sent to the developers to fix these bugs.
+
+Build the jenkins job again after the bugs has been fixed.
 
 ![](./images/deploy1.PNG)
 

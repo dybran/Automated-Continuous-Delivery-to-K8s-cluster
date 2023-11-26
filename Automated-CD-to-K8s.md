@@ -368,6 +368,8 @@ Copy the link and download the binary.
 
 `$ wget https://get.helm.sh/helm-v3.12.3-linux-amd64.tar.gz`
 
+`$ tar -zxvf helm-v3.12.3-linux-amd64.tar.gz`
+
 To make helm globally accessible in kops instance
 
 `$ sudo mv linux-amd64/helm /usr/local/bin/helm`
